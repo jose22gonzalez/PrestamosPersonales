@@ -1,4 +1,4 @@
-package edu.ucne.prestamospersonales.ui.ocupacionlist
+package edu.ucne.prestamospersonales.ui.personalistscreen
 
 
 import android.annotation.SuppressLint
@@ -17,18 +17,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import edu.ucne.prestamospersonales.data.entity.occupacionentity
-
+import edu.ucne.prestamospersonales.data.entity.personasentity
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OccupationListScreen(
+fun PersonasListScreen(
     onClick: () ->Unit,
-    viewModel: OccupationListViewModel = hiltViewModel()
+    viewModel: PersonaListviewmodel = hiltViewModel()
 ) {
     Scaffold (
-        topBar = {CenterAlignedTopAppBar(title = {Text("Occupation List")})
+        topBar = {CenterAlignedTopAppBar(title = {Text("Personas List")})
         },
         floatingActionButton = {
             FloatingActionButton(onClick = onClick) {
@@ -37,14 +36,14 @@ fun OccupationListScreen(
 
         },
 
-    ) {
+        ) {
         val uiState by viewModel.uiState.collectAsState()
 
         Column(modifier = Modifier
             .fillMaxWidth()
             .padding(it)) {
-            OccupationList(
-                occupation = uiState.occupations,
+            PersonaList(
+                persona = uiState.personas,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(it)
@@ -59,27 +58,46 @@ fun OccupationListScreen(
 
 
 @Composable
-fun OccupationList(
-    occupation: List<occupacionentity>,
-    viewModel: OccupationListViewModel = hiltViewModel(),
+fun PersonaList(
+    persona: List<personasentity>,
+    viewModel: PersonaListviewmodel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
-        items(occupation) { occupation ->
-            OccupationRow(occupation, viewModel)
+        items(persona) { persona ->
+            PersonaRow(persona, viewModel)
         }
     }
 }
 
 @Composable
-fun OccupationRow(occupacionentity: occupacionentity, viewModel: OccupationListViewModel) {
+fun PersonaRow(personasentity: personasentity, viewModel: PersonaListviewmodel) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(4.dp)
     ) {
         Text(
-            text = occupacionentity.descripcion,
+            text = "Nombre ${ personasentity.nombre }",
+            style = MaterialTheme.typography.titleLarge
+        )
+        Text(
+            text = "Email: ${personasentity.email}",
+            style = MaterialTheme.typography.titleLarge
+        )
+
+        Text(
+            text = "Direccion: ${personasentity.direccion}",
+            style = MaterialTheme.typography.titleLarge
+        )
+
+        Text(
+            text = "Fecha de Nacimiento: ${personasentity.fechanacimiento}",
+            style = MaterialTheme.typography.titleLarge
+        )
+
+        Text(
+            text = "Ocupacion: ${personasentity.ocupacion}",
             style = MaterialTheme.typography.titleLarge
         )
 
@@ -89,11 +107,33 @@ fun OccupationRow(occupacionentity: occupacionentity, viewModel: OccupationListV
         ) {
 
             Text(
-                text = "Salary: ${occupacionentity.salrio}"
+                text = "Celular: ${personasentity.celular}"
             )
+
+            Text(
+                text = "Telefono: ${personasentity.telefono}"
+            )
+
+//            Text(
+//                text = "Email: ${personasentity.email}"
+//            )
+//
+//            Text(
+//                text = "Direccion: ${personasentity.direccion}"
+//            )
+//
+//            Text(
+//                text = "Fecha de Nacimiento: ${personasentity.fechanacimiento}"
+//            )
+//
+//            Text(
+//                text = "Ocupacion: ${personasentity.ocupacion}"
+//            )
+            //ocupacion,fechanacimiento,direccion
+
             IconButton(
                 modifier = Modifier.padding(0.dp),
-                onClick = { viewModel.DeleteOccupation(occupacionentity)}) {
+                onClick = { viewModel.DeletePersona(personasentity)}) {
                 Icon(imageVector = Icons.Outlined.Clear, contentDescription = "add",
                     tint = Color.Red)
             }

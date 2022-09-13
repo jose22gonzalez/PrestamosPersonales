@@ -4,28 +4,28 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import edu.ucne.prestamospersonales.data.dao.ocupaciondao
-import edu.ucne.prestamospersonales.data.entity.occupacionentity
+import edu.ucne.prestamospersonales.data.dao.personadao
+import edu.ucne.prestamospersonales.data.entity.personasentity
 
 @Database(
-    entities = [occupacionentity::class],
-    version = 1,
+    entities = [personasentity::class],
+    version = 2,
     exportSchema = false
 )
-abstract class ocupacionDatabase: RoomDatabase(){
-    abstract val ocupaciondao: ocupaciondao
+abstract class personasDatabase: RoomDatabase(){
+    abstract val personadao: personadao
     companion object {
         @Volatile
-        private var INSTANCE: ocupacionDatabase? = null
-        fun getInstance(context: Context): ocupacionDatabase {
+        private var INSTANCE: personasDatabase? = null
+        fun getInstance(context: Context): personasDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
                 if(instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        ocupacionDatabase::class.java,
-                        "Ocupaciones"
+                        personasDatabase::class.java,
+                        "Personas"
                     )
                         .fallbackToDestructiveMigration()
                         .build()

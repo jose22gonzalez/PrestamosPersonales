@@ -1,5 +1,6 @@
 package edu.ucne.prestamospersonales.ui.ocupacionscreen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OcupacionScreen(
@@ -23,15 +25,15 @@ fun OcupacionScreen(
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(title = { Text("Occupation Entry")})
-
         },
 
         ) {
+
         Column (
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
-                .padding(8.dp)
+//                .padding(it)
         ) {
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),

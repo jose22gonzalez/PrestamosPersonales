@@ -2,7 +2,7 @@ package edu.ucne.prestamospersonales.di
 
 import android.content.Context
 import androidx.room.Room
-import edu.ucne.prestamospersonales.data.ocupacionDatabase
+import edu.ucne.prestamospersonales.data.personasDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,16 +12,15 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object ModulePersona {
     @Singleton
     @Provides
-    fun providesDataBase(@ApplicationContext context: Context): ocupacionDatabase {
+    fun providesDataBase(@ApplicationContext context: Context): personasDatabase {
         return Room.databaseBuilder(
             context,
-            ocupacionDatabase::class.java,
+            personasDatabase::class.java,
             "SpellingDB"
         ).fallbackToDestructiveMigration().build()
     }
-
 
 }
