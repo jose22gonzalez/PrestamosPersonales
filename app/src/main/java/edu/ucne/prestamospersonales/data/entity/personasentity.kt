@@ -10,8 +10,8 @@ data class personasentity(
     @PrimaryKey(autoGenerate = true)
     val personasid: Int = 0,
     val nombre: String,
-    val telefono: Int,
-    val celular: Int,
+    val telefono: String,
+    val celular: String,
     val email: String,
     val direccion: String,
     val fechanacimiento: String,

@@ -2,6 +2,7 @@ package edu.ucne.prestamospersonales.ui.personalistscreen
 
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,14 +11,14 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import edu.ucne.prestamospersonales.data.entity.personasentity
+import java.util.*
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -72,6 +73,7 @@ fun PersonaList(
 
 @Composable
 fun PersonaRow(personasentity: personasentity, viewModel: PersonaListviewmodel) {
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -83,6 +85,16 @@ fun PersonaRow(personasentity: personasentity, viewModel: PersonaListviewmodel) 
         )
         Text(
             text = "Email: ${personasentity.email}",
+            style = MaterialTheme.typography.titleLarge
+        )
+
+        Text(
+            text = "Celular: ${personasentity.celular}",
+            style = MaterialTheme.typography.titleLarge
+        )
+
+        Text(
+            text = "Telefono: ${personasentity.telefono}",
             style = MaterialTheme.typography.titleLarge
         )
 
@@ -101,35 +113,12 @@ fun PersonaRow(personasentity: personasentity, viewModel: PersonaListviewmodel) 
             style = MaterialTheme.typography.titleLarge
         )
 
+
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-
-            Text(
-                text = "Celular: ${personasentity.celular}"
-            )
-
-            Text(
-                text = "Telefono: ${personasentity.telefono}"
-            )
-
-//            Text(
-//                text = "Email: ${personasentity.email}"
-//            )
-//
-//            Text(
-//                text = "Direccion: ${personasentity.direccion}"
-//            )
-//
-//            Text(
-//                text = "Fecha de Nacimiento: ${personasentity.fechanacimiento}"
-//            )
-//
-//            Text(
-//                text = "Ocupacion: ${personasentity.ocupacion}"
-//            )
-            //ocupacion,fechanacimiento,direccion
 
             IconButton(
                 modifier = Modifier.padding(0.dp),

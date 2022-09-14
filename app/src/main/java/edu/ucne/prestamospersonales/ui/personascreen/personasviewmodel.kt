@@ -28,8 +28,8 @@ class personasviewmodel @Inject constructor(
             respository.insertOccupation(
                 personasentity(
                     nombre = nombre,
-                    telefono = telefono.toInt(),
-                    celular = celular.toInt(),
+                    telefono = telefono,
+                    celular = celular,
                     email = email,
                     direccion = direccion,
                     fechanacimiento = fechanacimiento,
