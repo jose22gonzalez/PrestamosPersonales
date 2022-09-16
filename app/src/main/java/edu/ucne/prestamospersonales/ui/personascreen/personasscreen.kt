@@ -102,73 +102,78 @@ fun PersonasScreen(
 //                .padding(it)
         ) {
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(5.dp),
                 label = { Text(text = "Nombre")},
                 value = viewModel.nombre,
                 onValueChange = {viewModel.nombre = it},
-                trailingIcon = {
+                leadingIcon = {
                     Icon(imageVector = Icons.Default.Person, contentDescription = "date")
                 },
             )
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(5.dp),
                 label = { Text(text = "Telefono")},
                 value = viewModel.telefono,
                 onValueChange = {viewModel.telefono = it},
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Number
+                    keyboardType = KeyboardType.Phone
                 ),
-                trailingIcon = {
+                leadingIcon = {
                     Icon(imageVector = Icons.Default.Call, contentDescription = "date")
                 },
 
             )
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(5.dp),
                 label = {Text(text = "Celular")},
                 value = viewModel.celular,
                 onValueChange = {viewModel.celular = it},
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Number
+                    keyboardType = KeyboardType.Phone
                 ),
-                trailingIcon = {
+                leadingIcon = {
                     Icon(imageVector = Icons.Default.Phone, contentDescription = "date")
                 },
 
             )
 
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(5.dp),
                 label = { Text(text = "Email")},
                 value = viewModel.email,
                 onValueChange = {viewModel.email = it},
-                trailingIcon = {
+                leadingIcon = {
                     Icon(imageVector = Icons.Default.Email, contentDescription = "date")
                 },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email
+                )
             )
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(5.dp),
                 label = { Text(text = "Direccion")},
                 value = viewModel.direccion,
                 onValueChange = {viewModel.direccion = it},
-                trailingIcon = {
+                leadingIcon = {
                     Icon(imageVector = Icons.Default.LocationOn, contentDescription = "date")
                 },
             )
 
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp)
+                    .clickable { datePickerDialog.show() }               ,
                 label = { Text(text = "Fecha Nacimiento")},
                 value = viewModel.fechanacimiento,
                 onValueChange = {viewModel.fechanacimiento = it},
                 trailingIcon = { IconButton(onClick = {datePickerDialog.show()}) {
                     Icon(imageVector = Icons.Default.DateRange, contentDescription = "date")
-                }}
+                }},
+                readOnly = true,
             )
 
             viewModel.fechanacimiento = date
-
-
 
                 OutlinedTextField(
                    value = viewModel.ocupacion,
@@ -178,9 +183,10 @@ fun PersonasScreen(
                     readOnly = true,
                     modifier = Modifier
                         .clickable { expanded2 = true }
-                        .fillMaxWidth(),
+                        .fillMaxWidth().padding(5.dp),
                     trailingIcon = { IconButton(onClick = {}) {
                     Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = "date")
+
                 }}
 
                 )
@@ -210,8 +216,6 @@ fun PersonasScreen(
 
                 onClick = {
                     ValidarPerson()
-//                    viewModel.save()
-//                    onNavigateBack()
                 }) {
                 Text(text = "Add a Personas")
             }

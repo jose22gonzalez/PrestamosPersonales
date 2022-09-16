@@ -17,19 +17,10 @@ class ocupacionviewmodel @Inject constructor(
 ) : ViewModel() {
     var descripcion by mutableStateOf("")
     var salario by mutableStateOf("")
+    var money by mutableStateOf(0.0)
 
 
-    fun validar(): Boolean{
-        var paso = false
-        if(descripcion.isBlank()){
-            paso = true
-        }else{
-            if(salario.isBlank()){
-                paso = true
-            }
-        }
-        return paso
-    }
+
 
     fun save() {
         viewModelScope.launch {
