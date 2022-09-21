@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface personadao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertar(personasentity: personasentity)
 
     @Update
@@ -15,7 +15,7 @@ interface personadao {
     @Delete
     suspend fun eliminar(personasentity: personasentity)
 
-    @Query("SELECT * FROM Personas WHERE personasid = :id")
+    @Query("SELECT * FROM Personas WHERE personasid = :id LIMIT 1")
     fun getpersonas(id:Int): Flow<personasentity>
 
     @Query("SELECT * from Personas")

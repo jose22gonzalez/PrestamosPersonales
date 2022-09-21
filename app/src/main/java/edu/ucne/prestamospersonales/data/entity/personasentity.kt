@@ -15,6 +15,7 @@ data class personasentity(
     val email: String,
     val direccion: String,
     val fechanacimiento: String,
-    val ocupacion: String
+    val ocupacion: String,
+    val Balance: Double
 
 )

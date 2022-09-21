@@ -14,13 +14,22 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.Provides
-import edu.ucne.prestamospersonales.ui.ocupacionlist.OccupationListScreen
-import edu.ucne.prestamospersonales.ui.ocupacionscreen.OcupacionScreen
+//import edu.ucne.prestamospersonales.ui.ocupacionlist.OccupationListScreen
+//import edu.ucne.prestamospersonales.ui.ocupacionscreen.OcupacionScreen
+
+import edu.ucne.prestamospersonales.ui.Ocupaciones.OcupacionList.OccupationListScreen
+import edu.ucne.prestamospersonales.ui.Ocupaciones.OcupacionScreen.OcupacionScreen
+
 import edu.ucne.prestamospersonales.util.screen
 import dagger.hilt.android.AndroidEntryPoint
 import edu.ucne.prestamospersonales.ui.home.HomeScreen
-import edu.ucne.prestamospersonales.ui.personascreen.PersonasScreen
-import edu.ucne.prestamospersonales.ui.personalistscreen.PersonasListScreen
+//import edu.ucne.prestamospersonales.ui.personascreen.PersonasScreen
+//import edu.ucne.prestamospersonales.ui.personalistscreen.PersonasListScreen
+
+import edu.ucne.prestamospersonales.ui.Personas.PersonaScreen.PersonasScreen
+import edu.ucne.prestamospersonales.ui.Personas.PersonasListScreen.PersonasListScreen
+import edu.ucne.prestamospersonales.ui.Prestamos.PrestamosListScreen.PrestamoListScreen
+import edu.ucne.prestamospersonales.ui.Prestamos.PrestamosScreen.PrestamoScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -41,7 +50,8 @@ class MainActivity : ComponentActivity() {
                         composable(screen.home.route){
                             HomeScreen(
                                 onClick = {navController.navigate(screen.ocupacionlistscreen.route)},
-                                onClickPerson = {navController.navigate(screen.personalistscreen.route)}
+                                onClickPerson = {navController.navigate(screen.personalistscreen.route)},
+                                onClickPrestamo = {navController.navigate(screen.prestamolistscreen.route)}
                             )
                         }
                         composable(screen.ocupacionlistscreen.route) {
@@ -61,13 +71,20 @@ class MainActivity : ComponentActivity() {
                                onClick = { navController.navigate(screen.personascreen.route) }
                            )
                        }
-
                         composable(screen.personascreen.route){
                             PersonasScreen({navController.navigateUp()})
                         }
 
-                    }
+                        composable(screen.prestamolistscreen.route){
+                            PrestamoListScreen(
+                                onClick = {navController.navigate(screen.prestamoscreen.route)}
+                            )
+                        }
 
+                        composable(screen.prestamoscreen.route){
+                            PrestamoScreen({navController.navigateUp()})
+                        }
+                    }
                     
                 }
             }

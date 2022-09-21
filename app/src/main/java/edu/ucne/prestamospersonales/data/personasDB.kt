@@ -9,7 +9,7 @@ import edu.ucne.prestamospersonales.data.entity.personasentity
 
 @Database(
     entities = [personasentity::class],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 abstract class personasDatabase: RoomDatabase(){

@@ -1,32 +1,20 @@
 package edu.ucne.prestamospersonales.ui.home
 
 
-import android.graphics.fonts.FontStyle
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.Build
 import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material.icons.outlined.Send
-import androidx.compose.material.icons.rounded.ArrowForward
-import androidx.compose.material.icons.rounded.Done
-import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material.icons.twotone.AccountBox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import androidx.compose.foundation.layout.height as height1
@@ -37,7 +25,8 @@ import androidx.compose.ui.unit.dp as dp1
 @Composable
 fun HomeScreen(
     onClick: () -> Unit,
-    onClickPerson: () -> Unit
+    onClickPerson: () -> Unit,
+    onClickPrestamo: () -> Unit
 ) {
 
     Scaffold(topBar = {
@@ -80,7 +69,17 @@ fun HomeScreen(
                 textAlign = TextAlign.Center
             )
             Button(onClick =  onClickPerson , modifier = Modifier) {
-                Icon(imageVector = Icons.Outlined.Person, contentDescription = "Add a Occupation")
+                Icon(imageVector = Icons.Outlined.Person, contentDescription = "Add a Persona")
+            }
+
+            Text(text = "Registro Prestamo", modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp1),
+                textAlign = TextAlign.Center
+            )
+
+            Button(onClick =  onClickPrestamo ) {
+                Icon(imageVector = Icons.Outlined.Build, contentDescription = "Add a Prestamo")
             }
             
             Box(modifier = Modifier
@@ -94,7 +93,9 @@ fun HomeScreen(
                     painter = rememberAsyncImagePainter("https://images.unsplash.com/photo-1593672715438-d88a70629abe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"),
                     contentDescription = null,
                     alignment = Alignment.Center,
-                    modifier = Modifier.height1(400.dp1).width(600.dp1)
+                    modifier = Modifier
+                        .height1(400.dp1)
+                        .width(600.dp1)
                 )
             }
         }
